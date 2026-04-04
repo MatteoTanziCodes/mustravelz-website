@@ -1,47 +1,58 @@
-# OpenNext Starter
+# Mustravelz
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Mustravelz is a multilingual travel commerce and editorial site built on Next.js and deployed with OpenNext on Cloudflare.
 
-## Getting Started
+## What is in place
 
-Read the documentation at https://opennext.js.org/cloudflare.
+- Locale-aware routing for `en`, `fr`, and `ar`
+- RTL support for Arabic
+- Scrapbook-style homepage foundation with Framer Motion reveals
+- Typed content layer that reads from Sanity when configured and falls back safely in development
+- Embedded Sanity Studio route at `/studio`
+- Cloudflare/OpenNext deployment wiring kept intact
 
-## Develop
+## Local setup
 
-Run the Next.js development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create `.env.local` from `.env.example` and set your Sanity project values.
+
+3. Start development:
 
 ```bash
 npm run dev
-# or similar package manager command
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open the localized site at `http://localhost:3000/en`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Open the CMS route at `http://localhost:3000/studio`
 
-## Preview
-
-Preview the application locally on the Cloudflare runtime:
+## Commands
 
 ```bash
+npm run dev
+npm run lint
+npm run build
 npm run preview
-# or similar package manager command
-```
-
-## Deploy
-
-Deploy the application to Cloudflare:
-
-```bash
 npm run deploy
-# or similar package manager command
 ```
 
-## Learn More
+## Content architecture
 
-To learn more about Next.js, take a look at the following resources:
+- `src/lib/content/home-page.ts` is the front-end content entry point
+- `src/lib/content/fallback-home-page.ts` holds safe local fallback copy for each locale
+- `src/lib/sanity/*` contains the Sanity client, environment helpers, and GROQ query
+- `src/sanity/schemaTypes/home-page.ts` defines the editable homepage document schema
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The current homepage is intentionally routed through one typed document shape so visible copy can move into Sanity without changing the UI contract.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Near-term follow-up
+
+- Add a Sanity initialization step or seed script so the three locale home documents are created automatically
+- Wire Stripe hosted checkout through a server route and map purchasable items to operational data
+- Add D1-backed submission intake and moderation states for community content
+- Expand beyond the homepage into journal article and collection detail routes
