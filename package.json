@@ -16,7 +16,7 @@
 		"framer-motion": "^12.38.0",
 		"next-sanity": "^11.6.12",
 		"@opennextjs/cloudflare": "^1.17.1",
-		"next": "16.2.2",
+		"next": "16.2.3",
 		"react": "19.1.5",
 		"react-dom": "19.1.5",
 		"sanity": "^4.22.0",
