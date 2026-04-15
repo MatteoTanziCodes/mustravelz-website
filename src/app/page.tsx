@@ -1,52 +1,152 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { headers } from "next/headers";
 
-export default function Home() {
+import { localeLabels, supportedLocales, type SiteLocale } from "@/lib/i18n/config";
+
+const localeLandingCopy: Record<
+	SiteLocale,
+	{
+		description: string;
+		cta: string;
+	}
+> = {
+	en: {
+		description: "Curated group departures, field notes, and a travel journal experience built for young Muslim travelers.",
+		cta: "Open English site",
+	},
+	fr: {
+		description: "Des departs choisis, des notes de terrain et une experience editoriale pensee comme un carnet de voyage.",
+		cta: "Ouvrir la version francaise",
+	},
+	ar: {
+		description: "رحلات جماعية منسقة ومذكرات طريق وتجربة تحريرية بطابع دفتر السفر.",
+		cta: "افتح النسخة العربية",
+	},
+};
+
+function isStagingHost(host: string) {
+	return host.startsWith("staging.");
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+	const headerStore = await headers();
+	const host = headerStore.get("host") ?? "";
+	const staging = isStagingHost(host);
+
+	return {
+		title: staging ? "Staging Preview" : "Mustravelz",
+		description: "A bilingual and Arabic-first travel landing page for curated group trips and editorial storytelling.",
+		robots: staging
+			? {
+					index: false,
+					follow: false,
+				}
+			: undefined,
+	};
+}
+
+export default async function IndexPage() {
+	const headerStore = await headers();
+	const host = headerStore.get("host") ?? "";
+	const staging = isStagingHost(host);
+
 	return (
-		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
-				<ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-					<li className="mb-2 tracking-[-.01em]">
-						Get started by editing{" "}
-						<code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-							src/app/page.tsx
-						</code>
-						.
-					</li>
-					<li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-				</ol>
+		<main className="page-shell px-3 py-4 sm:px-5 lg:px-8">
+			<div className="paper-panel texture-stack mx-auto max-w-6xl overflow-hidden rounded-[2rem] px-5 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14">
+				<div className="texture-layer texture-layer--parchment" />
+				<div className="texture-layer texture-layer--paper-overlay texture-opacity-soft" />
+				<div
+					className="texture-layer texture-layer--pattern texture-repeat texture-opacity-soft"
+					style={{ backgroundSize: "18px 18px" }}
+				/>
 
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<a
-						className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Read our docs
-					</a>
+				<div className="texture-content relative">
+					<div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+						<div className="max-w-3xl">
+							<p className="smallcaps text-[var(--accent-strong)]">
+								{staging ? "Cloudflare staging domain" : "Preview landing page"}
+							</p>
+							<h1 className="hero-title mt-4 text-[3.25rem] leading-[0.92] text-[var(--ink)] sm:text-[4.8rem] lg:text-[6.6rem]">
+								Mustravelz
+							</h1>
+							<p className="section-note mt-2 text-[1.8rem] sm:text-[2.3rem] lg:text-[2.8rem]">
+								Travel. Explore. Connect.
+							</p>
+							<p className="interface-text mt-5 max-w-2xl text-[1rem] leading-8 text-[var(--ink-soft)] sm:text-[1.1rem]">
+								A staging-ready front door for curated group departures, destination journals, and Muslim-friendly
+								travel experiences shaped like a tactile editorial product instead of a generic booking site.
+							</p>
+						</div>
+
+						<div className="flex flex-col gap-3 self-start lg:max-w-xs lg:items-end">
+							<div className="ticket-button-light rounded-[1.35rem] px-4 py-3 text-left text-[var(--ink-soft)]">
+								<p className="smallcaps !text-[0.6rem] text-[var(--accent-strong)]">Live host</p>
+								<p className="interface-text mt-2 text-[1rem] font-semibold">{host || "localhost"}</p>
+							</div>
+							<Link
+								href="/en"
+								className="ticket-button interface-text inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-[1rem] font-semibold text-[#fff6df]"
+							>
+								Enter the English experience
+							</Link>
+						</div>
+					</div>
+
+					<div className="my-7">
+						<div className="section-divider" />
+					</div>
+
+					<section className="grid gap-4 lg:grid-cols-3">
+						{supportedLocales.map((locale) => {
+							const copy = localeLandingCopy[locale];
+
+							return (
+								<Link
+									key={locale}
+									href={`/${locale}`}
+									className="ornate-panel texture-stack rounded-[1.75rem] px-5 pb-5 pt-6 transition duration-200 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(78,45,12,0.16)] sm:px-6"
+								>
+									<div className="texture-layer texture-layer--paper-overlay texture-opacity-soft" />
+									<div className="texture-content">
+										<p className="smallcaps text-[var(--accent-strong)]">{locale.toUpperCase()}</p>
+										<h2 className="mt-3 text-[2rem] text-[var(--ink)] sm:text-[2.35rem]">{localeLabels[locale]}</h2>
+										<p className="interface-text mt-3 min-h-24 text-[0.98rem] leading-7 text-[var(--ink-soft)]">
+											{copy.description}
+										</p>
+										<div className="mt-5 inline-flex items-center gap-2 text-[0.95rem] font-semibold text-[var(--accent-strong)]">
+											<span>{copy.cta}</span>
+											<span aria-hidden>→</span>
+										</div>
+									</div>
+								</Link>
+							);
+						})}
+					</section>
+
+					<section className="mt-6 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+						<div className="footer-paper rounded-[1.7rem] px-5 py-5 sm:px-6">
+							<p className="smallcaps text-[var(--accent-strong)]">What this deploy proves</p>
+							<div className="interface-text mt-4 grid gap-3 text-[1rem] leading-7 text-[var(--ink-soft)]">
+								<p>Custom domain wiring through Cloudflare Workers.</p>
+								<p>Multilingual entry into the existing English, French, and Arabic journeys.</p>
+								<p>A brand-forward landing page at the root hostname instead of an immediate locale redirect.</p>
+							</div>
+						</div>
+
+						<div className="travel-board rounded-[1.7rem] p-5 sm:p-6">
+							<p className="smallcaps text-[rgba(255,241,219,0.78)]">Staging goal</p>
+							<p className="mt-4 text-[2rem] leading-[1.05] text-[#fff6df]">
+								Share a clean preview link before production routing changes.
+							</p>
+							<p className="interface-text mt-4 text-[0.98rem] leading-7 text-[rgba(255,241,219,0.84)]">
+								This keeps the current apex records untouched while giving you a presentable brand surface at a Cloudflare-managed
+								subdomain.
+							</p>
+						</div>
+					</section>
 				</div>
-			</main>
-			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-					Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-					Go to nextjs.org →
-				</a>
-			</footer>
-		</div>
+			</div>
+		</main>
 	);
 }
