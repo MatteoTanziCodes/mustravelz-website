@@ -16,6 +16,18 @@ export function proxy(request: NextRequest) {
 		return NextResponse.next();
 	}
 
+	if (pathname === "/") {
+		const requestHeaders = new Headers(request.headers);
+		requestHeaders.set("x-mustravelz-locale", defaultLocale);
+		requestHeaders.set("x-mustravelz-dir", getLocaleDirection(defaultLocale));
+
+		return NextResponse.next({
+			request: {
+				headers: requestHeaders,
+			},
+		});
+	}
+
 	const [, localeSegment] = pathname.split("/");
 
 	if (!isSupportedLocale(localeSegment)) {
