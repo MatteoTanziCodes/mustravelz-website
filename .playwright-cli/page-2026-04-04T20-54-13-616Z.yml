@@ -1,0 +1,119 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic:
+      - img
+      - img
+      - img
+      - img
+    - generic [ref=e5]:
+      - banner [ref=e6]:
+        - generic [ref=e7]:
+          - img [ref=e9]
+          - generic [ref=e12]:
+            - paragraph [ref=e13]: Mustravelz
+            - paragraph [ref=e14]: Group travel
+        - generic [ref=e15]:
+          - navigation [ref=e16]:
+            - link "Destinations" [ref=e17] [cursor=pointer]:
+              - /url: "#shop"
+            - link "Trips" [ref=e18] [cursor=pointer]:
+              - /url: "#shop"
+            - link "About" [ref=e19] [cursor=pointer]:
+              - /url: "#community"
+            - link "Journal" [ref=e20] [cursor=pointer]:
+              - /url: "#journal"
+            - link "Community" [ref=e21] [cursor=pointer]:
+              - /url: "#community"
+          - generic [ref=e22]:
+            - button [ref=e23]:
+              - img [ref=e24]
+            - link "Log in" [ref=e27] [cursor=pointer]:
+              - /url: "#community"
+            - generic [ref=e28]:
+              - link "en" [ref=e29] [cursor=pointer]:
+                - /url: /en
+              - link "fr" [ref=e30] [cursor=pointer]:
+                - /url: /fr
+              - link "ar" [ref=e31] [cursor=pointer]:
+                - /url: /ar
+            - link "Join the Journey" [ref=e32] [cursor=pointer]:
+              - /url: "#shop"
+      - main [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - paragraph [ref=e36]: Issue 01 | Curated routes, field notes, and next departures
+            - heading "Travel. Explore. Connect." [level=1] [ref=e37]
+            - paragraph [ref=e38]: Memories start here.
+            - paragraph [ref=e39]: Curated group trips for young Muslim travelers looking for adventure, culture, and community, wrapped in a travel journal experience that feels tactile instead of transactional.
+            - generic [ref=e40]:
+              - link "Explore trips" [ref=e41] [cursor=pointer]:
+                - /url: "#shop"
+              - link "Watch Video" [ref=e42] [cursor=pointer]:
+                - /url: /studio
+          - generic [ref=e43]:
+            - img [ref=e55]
+            - generic [ref=e59]: Next stop?
+        - generic [ref=e63]: ✦
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - heading "Upcoming Trips" [level=2] [ref=e66]
+            - generic [ref=e67]:
+              - generic [ref=e70]:
+                - heading "Morocco" [level=3] [ref=e71]
+                - paragraph [ref=e72]: Oct 12 - Oct 20
+                - paragraph [ref=e73]: 8 days | 14 spots left
+                - generic [ref=e74]:
+                  - generic [ref=e75]: Small group
+                  - generic [ref=e76]: From $1290
+              - generic [ref=e79]:
+                - heading "Turkiye" [level=3] [ref=e80]
+                - paragraph [ref=e81]: Nov 05 - Nov 14
+                - paragraph [ref=e82]: 10 days | 8 spots left
+                - generic [ref=e83]:
+                  - generic [ref=e84]: Small group
+                  - generic [ref=e85]: From $1490
+              - generic [ref=e88]:
+                - heading "Bali" [level=3] [ref=e89]
+                - paragraph [ref=e90]: Dec 03 - Dec 11
+                - paragraph [ref=e91]: 9 days | 12 spots left
+                - generic [ref=e92]:
+                  - generic [ref=e93]: Small group
+                  - generic [ref=e94]: From $1390
+              - generic [ref=e97]:
+                - heading "Uzbekistan" [level=3] [ref=e98]
+                - paragraph [ref=e99]: Jan 08 - Jan 16
+                - paragraph [ref=e100]: 9 days | 10 spots left
+                - generic [ref=e101]:
+                  - generic [ref=e102]: Small group
+                  - generic [ref=e103]: From $1190
+          - generic [ref=e106]:
+            - heading "Why Travel With Us" [level=2] [ref=e107]
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - img [ref=e111]
+                - paragraph [ref=e114]: Halal-friendly travel
+              - generic [ref=e115]:
+                - img [ref=e117]
+                - paragraph [ref=e120]: Small groups (12-16)
+              - generic [ref=e121]:
+                - img [ref=e123]
+                - paragraph [ref=e126]: Local experiences
+              - generic [ref=e127]:
+                - img [ref=e129]
+                - paragraph [ref=e132]: Built-in community
+        - generic [ref=e133]: ✦
+        - generic [ref=e134]:
+          - heading "From Our Travel Journal" [level=2] [ref=e136]
+          - generic [ref=e146]:
+            - heading "Get Trip updates" [level=2] [ref=e147]
+            - paragraph [ref=e148]: Sign up for upcoming trips, journal drops, and carefully paced departures across the Mustravelz route map.
+            - generic [ref=e149]:
+              - textbox "Your email" [ref=e150]
+              - button "Subscribe" [ref=e151]
+            - generic [ref=e152]:
+              - generic [ref=e153]: IG
+              - generic [ref=e154]: YT
+              - generic [ref=e155]: TT
+              - generic [ref=e156]: M
+  - button "Open Next.js Dev Tools" [ref=e162] [cursor=pointer]:
+    - img [ref=e163]

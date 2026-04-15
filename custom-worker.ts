@@ -5,9 +5,12 @@ export default {
 
   async queue(
     batch: MessageBatch<unknown>,
-    env: CloudflareEnv,
-    ctx: ExecutionContext
+    _env: CloudflareEnv,
+    _ctx: ExecutionContext
   ) {
+    void _env;
+    void _ctx;
+
     for (const message of batch.messages) {
       console.log(
         `Processing message ${message.id}:`,
@@ -19,9 +22,12 @@ export default {
 
   async scheduled(
     controller: ScheduledController,
-    env: CloudflareEnv,
-    ctx: ExecutionContext
+    _env: CloudflareEnv,
+    _ctx: ExecutionContext
   ) {
+    void _env;
+    void _ctx;
+
     switch (controller.cron) {
       case "0 * * * *":
         console.log(
