@@ -7,6 +7,7 @@ export default function ComingSoonPage() {
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "center",
+				background: "#f5e5c8",
 				color: "#2d190f",
 				textAlign: "center",
 				padding: "2rem",

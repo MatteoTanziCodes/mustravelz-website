@@ -74,7 +74,7 @@ html {
 	background:
 		radial-gradient(circle at top left, rgba(199, 146, 55, 0.14), transparent 28%),
 		radial-gradient(circle at bottom right, rgba(114, 70, 19, 0.18), transparent 30%),
-		var(--paper);
+		var(--paper-soft);
 }
 
 body {
