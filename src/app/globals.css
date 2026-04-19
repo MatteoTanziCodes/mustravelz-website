@@ -99,7 +99,7 @@ body {
 			rgba(121, 80, 32, 0.025) 69px,
 			rgba(121, 80, 32, 0.025) 70px
 		),
-		var(--paper);
+		var(--paper-soft);
 	font-family: var(--font-editorial), serif;
 }
 
