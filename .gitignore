@@ -46,5 +46,8 @@ next-env.d.ts
 
 # wrangler files
 .wrangler
+worker/.wrangler
 .dev.vars*
 
+# local agent worktrees
+.claude/worktrees/

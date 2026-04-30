@@ -1,0 +1,46 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "mustravelz-api",
+	"account_id": "613ce8a5c9f09c0e869f398b42e790fe",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-15",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": false,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "mustravelz-production",
+			"database_id": "1cb405bb-96a0-433d-a08d-ccc2ae48f842",
+			"migrations_dir": "../db/migrations"
+		}
+	],
+	"vars": {
+		"ENVIRONMENT": "production"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"env": {
+		"development": {
+			"name": "mustravelz-api-development",
+			"workers_dev": false,
+			"routes": [
+				{
+					"pattern": "api-dev.mustravelz.com",
+					"custom_domain": true
+				}
+			],
+			"vars": {
+				"ENVIRONMENT": "development"
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "mustravelz-development",
+					"database_id": "7715d355-4e6b-4d4e-8d00-0eac7159744a",
+					"migrations_dir": "../db/migrations"
+				}
+			]
+		}
+	}
+}

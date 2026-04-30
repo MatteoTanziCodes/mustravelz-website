@@ -9,6 +9,7 @@
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2026-04-15",
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"workers_dev": false,
 	"routes": [
 		{
 			"pattern": "mustravelz.com",
@@ -34,5 +35,29 @@
 	],
 	"observability": {
 		"enabled": true
+	},
+	"env": {
+		"development": {
+			"name": "mustravelz-development",
+			"workers_dev": false,
+			"routes": [
+				{
+					"pattern": "dev.mustravelz.com",
+					"custom_domain": true
+				}
+			],
+			"vars": {
+				"ENVIRONMENT": "development"
+			},
+			"images": {
+				"binding": "IMAGES"
+			},
+			"services": [
+				{
+					"binding": "WORKER_SELF_REFERENCE",
+					"service": "mustravelz-development"
+				}
+			]
+		}
 	}
 }

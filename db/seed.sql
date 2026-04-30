@@ -1,0 +1,2 @@
+-- Operational workflow tables start empty.
+-- Add non-production smoke-test rows here only if an environment needs them.
