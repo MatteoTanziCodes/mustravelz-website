@@ -40,7 +40,8 @@ jobs:
         run: npx wrangler d1 migrations apply mustravelz-development --remote --config worker/wrangler.jsonc --env development
 
       - name: Deploy development API Worker
-        run: npx wrangler deploy --config worker/wrangler.jsonc --env development
+        working-directory: worker
+        run: ../node_modules/.bin/wrangler deploy --env development
 
       - name: Deploy development site Worker
         run: npm run deploy:development
