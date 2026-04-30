@@ -42,6 +42,3 @@ jobs:
       - name: Deploy development API Worker
         working-directory: worker
         run: ../node_modules/.bin/wrangler deploy --env development
-
-      - name: Deploy development site Worker
-        run: npm run deploy:development
